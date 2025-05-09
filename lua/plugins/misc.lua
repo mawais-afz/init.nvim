@@ -102,6 +102,12 @@ return {
     },
     opts = {
       ring = { storage = "sqlite" },
+      system_clipboard = {
+        sync_with_ring = true,
+        -- Disable system clipboard integration if wl-copy is not available
+        -- This prevents errors on systems without Wayland clipboard tools
+        enable_OSC52 = true, -- Use OSC52 as fallback
+      },
     },
     keys = {
       { "<leader>p", "<cmd>YankyRingHistory<cr>",              mode = { "n", "x" },                                desc = "Open Yank History" },
