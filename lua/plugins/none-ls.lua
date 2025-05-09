@@ -37,17 +37,21 @@ return {
 
     local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
     null_ls.setup {
-      -- debug = true, -- Enable debug mode. Inspect logs with :NullLsLog.
+      debug = true, -- Enable debug mode temporarily
       sources = sources,
-      -- you can reuse a shared lspconfig on_attach callback here
       on_attach = function(client, bufnr)
-        if client.supports_method 'textDocument/formatting' then
+        -- Safely check if client exists and has the required method
+        if client and client.supports_method and client.supports_method('textDocument/formatting') then
           vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
           vim.api.nvim_create_autocmd('BufWritePre', {
             group = augroup,
             buffer = bufnr,
             callback = function()
-              vim.lsp.buf.format { async = false }
+              -- Use pcall to handle potential errors during formatting
+              local ok, err = pcall(vim.lsp.buf.format, { async = false })
+              if not ok then
+                vim.notify('Formatting failed: ' .. tostring(err), vim.log.levels.WARN)
+              end
             end,
           })
         end
