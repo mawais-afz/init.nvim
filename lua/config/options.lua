@@ -1,18 +1,18 @@
 vim.o.hlsearch = false -- Set highlight on search
 vim.wo.number = true -- Make line numbers default
 vim.o.mouse = 'a' -- Enable mouse mode
-vim.o.clipboard = 'unnamed' -- Use system clipboard
+vim.o.clipboard = 'unnamedplus' -- Use system clipboard
 vim.g.clipboard = {
-  name = 'win32yank',
+  name = 'xclip',
   copy = {
-    ['+'] = 'win32yank.exe -i',
-    ['*'] = 'win32yank.exe -i',
+    ['+'] = 'xclip -selection clipboard',
+    ['*'] = 'xclip -selection clipboard',
   },
   paste = {
-    ['+'] = 'win32yank.exe -o',
-    ['*'] = 'win32yank.exe -o',
+    ['+'] = 'xclip -selection clipboard -o',
+    ['*'] = 'xclip -selection clipboard -o',
   },
-  cache_enabled = 0,
+  cache_enabled = 1,
 }
 vim.o.breakindent = true -- Enable break indent
 vim.o.undofile = true -- Save undo history
