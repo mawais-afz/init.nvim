@@ -12,10 +12,13 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+-- Import color theme based on environment variable NVIM_THEME
+local theme = os.getenv('NVIM_THEME') or 'nord'
+local theme_path = 'plugins.themes.' .. theme
+
 require('lazy').setup({
   -- themes
-  require('plugins.nord'),
-  require('plugins.onedark'),
+  require(theme_path),
   
   -- plugins
   -- require('plugins.alpha'),
