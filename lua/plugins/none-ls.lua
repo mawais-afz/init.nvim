@@ -1,7 +1,8 @@
 -- Format on save and linters
 return {
   "nvimtools/none-ls.nvim",
-  optional = true,
+  event = { "BufReadPre", "BufNewFile" },
+  dependencies = { "mason.nvim" },
   opts = function(_, opts)
     local nls = require("null-ls")
     opts.sources = opts.sources or {}

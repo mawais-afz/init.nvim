@@ -19,13 +19,15 @@ require('lazy').setup({
 
   require('plugins.lualine'),
   require('plugins.treesitter'),
+  require('plugins.aerial'),
   require('plugins.alpha'),
   require('plugins.telescope'),
   require('plugins.neo-tree'),
+  require('plugins.indent-blankline'),
+  require('plugins.lsp'),
+  require('plugins.none-ls'),
   
   -- plugins
-  -- require('plugins.alpha'),
-  -- require('plugins.aerial'),
   -- require('plugins.autocompletion'),
   -- require('plugins.avante'),
   -- require('plugins.bufferline'),
@@ -35,14 +37,9 @@ require('lazy').setup({
   -- require('plugins.debug'),
   -- require('plugins.gitsigns'),
   -- require('plugins.harpoon'),
-  -- require('plugins.indent-blankline'),
   -- require('plugins.lazygit'),
-  -- require('plugins.lsp'),
   -- require('plugins.lualine'),
   -- require('plugins.misc'),
-  -- require('plugins.none-ls'),
   
-  -- require('plugins.telescope'),
-  -- require('plugins.treesitter'),
   -- require('plugins.vim-tmux-navigator'),
 })
