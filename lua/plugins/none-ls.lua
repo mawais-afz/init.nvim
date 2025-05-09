@@ -4,6 +4,7 @@ return {
   dependencies = {
     'nvimtools/none-ls-extras.nvim',
     'nvimtools/none-ls.nvim', -- ensure dependencies are installed
+    'jay-babu/mason-null-ls.nvim', -- add mason-null-ls dependency
   },
   config = function()
     local null_ls = require 'null-ls'
