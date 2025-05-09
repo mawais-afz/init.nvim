@@ -16,6 +16,8 @@ require('lazy').setup({
   -- themes
   require('plugins.nord'),
   require('plugins.onedark'),
+
+  require('plugins.lualine'),
   
   -- plugins
   -- require('plugins.alpha'),
