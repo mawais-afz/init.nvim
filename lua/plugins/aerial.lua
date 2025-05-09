@@ -102,21 +102,13 @@ return {
     "folke/edgy.nvim",
     optional = true,
     opts = function(_, opts)
-      local edgy_idx = LazyVim.plugin.extra_idx("ui.edgy")
-      local aerial_idx = LazyVim.plugin.extra_idx("editor.aerial")
-
-      if edgy_idx and edgy_idx > aerial_idx then
-        LazyVim.warn("The `edgy.nvim` extra must be **imported** before the `aerial.nvim` extra to work properly.", {
-          title = "LazyVim",
-        })
-      end
-
       opts.right = opts.right or {}
       table.insert(opts.right, {
-        title = "Aerial",
-        ft = "aerial",
-        pinned = true,
-        open = "AerialOpen",
+        title = "Overseer",
+        ft = "OverseerList",
+        open = function()
+          require("overseer").open()
+        end,
       })
     end,
   },
@@ -128,12 +120,12 @@ return {
     opts = function(_, opts)
       table.insert(opts.sections.lualine_c, {
         "aerial",
-        sep = " ",     -- separator between symbols
-        sep_icon = "", -- separator between icon and symbol
-        depth = 5,     -- number of symbols to render top-down
-        dense = false, -- dense mode
+        sep = " ",       -- separator between symbols
+        sep_icon = "",   -- separator between icon and symbol
+        depth = 5,       -- number of symbols to render top-down
+        dense = false,   -- dense mode
         dense_sep = ".", -- separator in dense mode
-        colored = true, -- color the symbol icons
+        colored = true,  -- color the symbol icons
       })
     end,
   },
