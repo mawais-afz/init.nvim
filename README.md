@@ -22,25 +22,25 @@ If you are experiencing issues, please make sure you have the latest versions.
 ### Install External Dependencies
 
 External Requirements:
-- Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
-- [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
-- Clipboard tool (xclip/xsel/win32yank or other depending on the platform)
-- A [Nerd Font](https://www.nerdfonts.com/): optional, provides various icons
-  - if you have it set `vim.g.have_nerd_font` in `init.lua` to true
-- Emoji fonts (Ubuntu only, and only if you want emoji!) `sudo apt install fonts-noto-color-emoji`
-- Language Setup:
-  - If you want to write Typescript, you need `npm`
-  - If you want to write Golang, you will need `go`
-  - etc.
+* Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
+* [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
+* Clipboard tool (xclip/xsel/win32yank or other depending on the platform)
+* A [Nerd Font](https://www.nerdfonts.com/): optional, provides various icons
+  * if you have it set `vim.g.have_nerd_font` in `init.lua` to true
+* Emoji fonts (Ubuntu only, and only if you want emoji!) `sudo apt install fonts-noto-color-emoji`
+* Language Setup:
+  * If you want to write Typescript, you need `npm`
+  * If you want to write Golang, you will need `go`
+  * etc.
 
 > [!NOTE]
-> See [Install Recipes](#Install-Recipes) for additional Windows and Linux specific notes
+> See [Install Recipes](#install-recipes) for additional Windows and Linux specific notes
 > and quick install snippets
 
 ### Install Kickstart
 
 > [!NOTE]
-> [Backup](#FAQ) your previous configuration (if any exists)
+> [Backup](#faq) your previous configuration (if any exists)
 
 Neovim's configurations are located under the following paths, depending on your OS:
 
@@ -60,9 +60,17 @@ fork to your machine using one of the commands below, depending on your OS.
 > Your fork's URL will be something like this:
 > `https://github.com/<your_github_username>/kickstart.nvim.git`
 
-You likely want to remove `lazy-lock.json` from your fork's `.gitignore` file
-too - it's ignored in the kickstart repo to make maintenance easier, but it's
-[recommended to track it in version control](https://lazy.folke.io/usage/lockfile).
+> [!IMPORTANT]
+> After forking, you should:
+>
+> 1. Remove `lazy-lock.json` from your fork's `.gitignore` file
+> 2. Commit the `lazy-lock.json` file to your repository
+>
+> This is recommended because:
+>
+> * It ensures consistent plugin versions across installations
+> * It speeds up the initial installation process
+> * It prevents potential compatibility issues between plugins
 
 #### Clone kickstart.nvim
 
@@ -73,7 +81,7 @@ too - it's ignored in the kickstart repo to make maintenance easier, but it's
 <details><summary> Linux and Mac </summary>
 
 ```sh
-git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+git clone https://github.com/mawais-afz/init.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
 
 </details>
@@ -83,13 +91,13 @@ git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HO
 If you're using `cmd.exe`:
 
 ```
-git clone https://github.com/nvim-lua/kickstart.nvim.git "%localappdata%\nvim"
+git clone https://github.com/mawais-afz/init.nvim.git "%localappdata%\nvim"
 ```
 
 If you're using `powershell.exe`
 
 ```
-git clone https://github.com/nvim-lua/kickstart.nvim.git "${env:LOCALAPPDATA}\nvim"
+git clone https://github.com/mawais-afz/init.nvim.git "${env:LOCALAPPDATA}\nvim"
 ```
 
 </details>
@@ -114,7 +122,6 @@ examples of adding popularly requested plugins.
 > [!NOTE]
 > For more information about a particular plugin check its repository's documentation.
 
-
 ### Getting Started
 
 [The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)
@@ -129,9 +136,11 @@ examples of adding popularly requested plugins.
   * Yes! You can use [NVIM_APPNAME](https://neovim.io/doc/user/starting.html#%24NVIM_APPNAME)`=nvim-NAME`
     to maintain multiple configurations. For example, you can install the kickstart
     configuration in `~/.config/nvim-kickstart` and create an alias:
+
     ```
     alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
     ```
+
     When you run Neovim using `nvim-kickstart` alias it will use the alternative
     config directory and the matching local directory
     `~/.local/share/nvim-kickstart`. You can apply this approach to any Neovim
@@ -149,11 +158,26 @@ examples of adding popularly requested plugins.
     * [Restructure the configuration](https://github.com/nvim-lua/kickstart.nvim/issues/218)
     * [Reorganize init.lua into a multi-file setup](https://github.com/nvim-lua/kickstart.nvim/pull/473)
 
+### Available Plugins
+
+The configuration includes several useful plugins by default:
+
+* **LSP Support**: Built-in LSP configuration with support for various languages
+* **Telescope**: Fuzzy finder for files, buffers, and more
+* **Treesitter**: Better syntax highlighting and code navigation
+* **Git Integration**: Git signs in the gutter and git commands
+* **File Explorer**: Neo-tree for file system navigation
+* **Autopairs**: Automatic bracket and quote pairing
+* **Indent Guides**: Visual guides for code indentation
+* **Linting**: Built-in linting support for various languages
+
+For more information about each plugin, check their respective documentation.
+
 ### Install Recipes
 
 Below you can find OS specific install instructions for Neovim and dependencies.
 
-After installing all the dependencies continue with the [Install Kickstart](#Install-Kickstart) step.
+After installing all the dependencies continue with the [Install Kickstart](#install-kickstart) step.
 
 #### Windows Installation
 
@@ -164,11 +188,12 @@ See `telescope-fzf-native` documentation for [more details](https://github.com/n
 
 This requires:
 
-- Install CMake and the Microsoft C++ Build Tools on Windows
+* Install CMake and the Microsoft C++ Build Tools on Windows
 
 ```lua
 {'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 ```
+
 </details>
 <details><summary>Windows with gcc/make using chocolatey</summary>
 Alternatively, one can install gcc and make which don't require changing the config,
@@ -177,15 +202,18 @@ the easiest way is to use choco:
 1. install [chocolatey](https://chocolatey.org/install)
 either follow the instructions on the page or use winget,
 run in cmd as **admin**:
+
 ```
 winget install --accept-source-agreements chocolatey.chocolatey
 ```
 
 2. install all requirements using choco, exit the previous cmd and
 open a new one so that choco path is set, and run in cmd as **admin**:
+
 ```
 choco install -y neovim git ripgrep wget fd unzip gzip mingw make
 ```
+
 </details>
 <details><summary>WSL (Windows Subsystem for Linux)</summary>
 
@@ -196,9 +224,11 @@ sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 sudo apt install make gcc ripgrep unzip git xclip neovim
 ```
+
 </details>
 
 #### Linux Install
+
 <details><summary>Ubuntu Install Steps</summary>
 
 ```
@@ -206,6 +236,7 @@ sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 sudo apt install make gcc ripgrep unzip git xclip neovim
 ```
+
 </details>
 <details><summary>Debian Install Steps</summary>
 
@@ -223,12 +254,14 @@ sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 # make it available in /usr/local/bin, distro installs to /usr/bin
 sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/
 ```
+
 </details>
 <details><summary>Fedora Install Steps</summary>
 
 ```
 sudo dnf install -y gcc make git ripgrep fd-find unzip neovim
 ```
+
 </details>
 
 <details><summary>Arch Install Steps</summary>
@@ -236,5 +269,5 @@ sudo dnf install -y gcc make git ripgrep fd-find unzip neovim
 ```
 sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
 ```
-</details>
 
+</details>
