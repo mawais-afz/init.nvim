@@ -104,8 +104,8 @@ return {
       ring = { storage = "sqlite" },
       system_clipboard = {
         sync_with_ring = true,
-        -- Disable system clipboard integration if wl-copy is not available
-        -- This prevents errors on systems without Wayland clipboard tools
+        -- Use xsel for clipboard integration
+        provider = "xsel",
         enable_OSC52 = true, -- Use OSC52 as fallback
       },
     },
