@@ -5,6 +5,13 @@ return {
   desc = "Better Yank/Paste",
   opts = {
     highlight = { timer = 150 },
+    ring = {
+      history_length = 100,
+      -- Using absolute path causes issues, so we set to just a file name
+      storage = "yanky_history",
+      sync_with_numbered_registers = true,
+      cancel_event = "update",
+    },
   },
   config = function(_, opts)
     require("yanky").setup(opts)
