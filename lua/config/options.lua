@@ -1,7 +1,19 @@
 vim.o.hlsearch = false -- Set highlight on search
 vim.wo.number = true -- Make line numbers default
 vim.o.mouse = 'a' -- Enable mouse mode
-vim.o.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
+vim.o.clipboard = 'unnamed' -- Use system clipboard
+vim.g.clipboard = {
+  name = 'win32yank',
+  copy = {
+    ['+'] = 'win32yank.exe -i',
+    ['*'] = 'win32yank.exe -i',
+  },
+  paste = {
+    ['+'] = 'win32yank.exe -o',
+    ['*'] = 'win32yank.exe -o',
+  },
+  cache_enabled = 0,
+}
 vim.o.breakindent = true -- Enable break indent
 vim.o.undofile = true -- Save undo history
 vim.o.ignorecase = true -- Case-insensitive searching UNLESS \C or capital in search
