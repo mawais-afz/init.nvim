@@ -18,6 +18,8 @@ require('lazy').setup({
   require('plugins.onedark'),
 
   require('plugins.lualine'),
+  require('plugins.treesitter'),
+  require('plugins.alpha'),
   
   -- plugins
   -- require('plugins.alpha'),
