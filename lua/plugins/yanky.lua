@@ -1,18 +1,29 @@
 -- better yank/paste
 return {
   "gbprod/yanky.nvim",
-  recommended = true,
+  event = "VeryLazy",
   desc = "Better Yank/Paste",
-  event = "LazyFile",
   opts = {
     highlight = { timer = 150 },
   },
+  config = function()
+    require("yanky").setup({
+      highlight = { timer = 150 },
+    })
+    
+    -- Setup telescope extension if available
+    local has_telescope, telescope = pcall(require, "telescope")
+    if has_telescope then
+      telescope.load_extension("yank_history")
+    end
+  end,
   keys = {
     {
       "<leader>p",
       function()
-        if LazyVim.pick.picker.name == "telescope" then
-          require("telescope").extensions.yank_history.yank_history({})
+        local has_telescope, telescope = pcall(require, "telescope")
+        if has_telescope then
+          telescope.extensions.yank_history.yank_history({})
         else
           vim.cmd([[YankyRingHistory]])
         end
@@ -20,7 +31,7 @@ return {
       mode = { "n", "x" },
       desc = "Open Yank History",
     },
-        -- stylua: ignore
+    -- stylua: ignore
     { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank Text" },
     { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put Text After Cursor" },
     { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put Text Before Cursor" },
@@ -38,5 +49,8 @@ return {
     { "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", desc = "Put Before and Indent Left" },
     { "=p", "<Plug>(YankyPutAfterFilter)", desc = "Put After Applying a Filter" },
     { "=P", "<Plug>(YankyPutBeforeFilter)", desc = "Put Before Applying a Filter" },
+  },
+  dependencies = {
+    "nvim-telescope/telescope.nvim",
   },
 }
