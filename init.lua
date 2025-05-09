@@ -28,18 +28,17 @@ require('lazy').setup({
   require('plugins.autocompletion'),
   -- require('plugins.lsp'),
   require('plugins.bufferline'),
+  require('plugins.comment'),
+  require('plugins.lazygit'),
+  require('plugins.gitsigns'),
   
   -- plugins
   -- require('plugins.avante'),
   -- require('plugins.chatgpt'),
-  -- require('plugins.comment'),
   -- require('plugins.database'),
   -- require('plugins.debug'),
-  -- require('plugins.gitsigns'),
   -- require('plugins.harpoon'),
-  -- require('plugins.lazygit'),
-  -- require('plugins.lualine'),
-  -- require('plugins.misc'),
+  require('plugins.misc'),
   
   -- require('plugins.vim-tmux-navigator'),
 })

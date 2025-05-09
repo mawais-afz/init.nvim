@@ -107,26 +107,5 @@ return {
       vim.filetype.add { extension = { multibranch = 'groovy' } }
     end,
   },
-  {
-    -- Use treesitter to autoclose and autorename html tags
-    'windwp/nvim-ts-autotag',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require('nvim-ts-autotag').setup({
-        opts = {
-          enable_close = true,         -- Auto close tags
-          enable_rename = true,        -- Auto rename pairs of tags
-          enable_close_on_slash = false, -- Auto close on trailing </
-        },
-        -- Override settings for specific filetypes if needed
-        per_filetype = {
-          -- Example: disable close for html
-          -- ["html"] = {
-          --   enable_close = false
-          -- }
-        }
-      })
-    end,
-  },
 
 }
