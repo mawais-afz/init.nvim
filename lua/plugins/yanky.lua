@@ -5,6 +5,9 @@ return {
   event = "VeryLazy",
   opts = {
     highlight = { timer = 150 },
+    clipboard = {
+      provider = "win32yank",
+    },
   },
   keys = {
     {
