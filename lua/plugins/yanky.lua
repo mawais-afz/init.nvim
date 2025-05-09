@@ -1,34 +1,17 @@
--- better yank/paste
 return {
   "gbprod/yanky.nvim",
-  event = "VeryLazy",
+  recommended = true,
   desc = "Better Yank/Paste",
+  event = "LazyFile",
   opts = {
     highlight = { timer = 150 },
-    ring = {
-      history_length = 100,
-      -- Using absolute path causes issues, so we set to just a file name
-      storage = "yanky_history",
-      sync_with_numbered_registers = true,
-      cancel_event = "update",
-    },
   },
-  config = function(_, opts)
-    require("yanky").setup(opts)
-
-    -- Setup telescope extension if available
-    local has_telescope, telescope = pcall(require, "telescope")
-    if has_telescope then
-      telescope.load_extension("yank_history")
-    end
-  end,
   keys = {
     {
       "<leader>p",
       function()
-        local has_telescope, telescope = pcall(require, "telescope")
-        if has_telescope then
-          telescope.extensions.yank_history.yank_history({})
+        if LazyVim.pick.picker.name == "telescope" then
+          require("telescope").extensions.yank_history.yank_history({})
         else
           vim.cmd([[YankyRingHistory]])
         end
@@ -54,8 +37,5 @@ return {
     { "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)",  desc = "Put Before and Indent Left" },
     { "=p", "<Plug>(YankyPutAfterFilter)",            desc = "Put After Applying a Filter" },
     { "=P", "<Plug>(YankyPutBeforeFilter)",           desc = "Put Before Applying a Filter" },
-  },
-  dependencies = {
-    "nvim-telescope/telescope.nvim",
   },
 }
