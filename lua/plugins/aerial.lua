@@ -143,21 +143,4 @@ return {
       })
     end,
   },
-
-  -- lualine integration
-  {
-    "nvim-lualine/lualine.nvim",
-    optional = true,
-    opts = function(_, opts)
-      table.insert(opts.sections.lualine_c, {
-        "aerial",
-        sep = " ",       -- separator between symbols
-        sep_icon = "",   -- separator between icon and symbol
-        depth = 5,       -- number of symbols to render top-down
-        dense = false,   -- dense mode
-        dense_sep = ".", -- separator in dense mode
-        colored = true,  -- color the symbol icons
-      })
-    end,
-  },
 }
