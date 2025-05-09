@@ -1,6 +1,6 @@
 return {
   'navarasu/onedark.nvim',
-  commit = 'dd640f6',
+  lazy = false,
   priority = 1000,
   config = function()
     -- vim.cmd.colorscheme 'onedark'
@@ -34,9 +34,7 @@ return {
       },
 
       -- Custom Highlights --
-      colors = {
-        -- purple = '#56b6c2',
-      }, -- Override default colors
+      colors = {}, -- Override default colors
       highlights = {}, -- Override highlight groups
 
       -- Plugins Config --
@@ -47,9 +45,8 @@ return {
       },
     }
 
-    local onedark = require 'lua.plugins.onedark'
-    onedark.setup(config)
-    onedark.load()
+    require('onedark').setup(config)
+    require('onedark').load()
 
     -- Make the background of diagnostics messages transparent
     local set_diagnostics_bg_transparency = function()
@@ -63,8 +60,8 @@ return {
     -- Toggle background transparency
     local toggle_transparency = function()
       config.transparent = not config.transparent
-      onedark.setup(config)
-      onedark.load()
+      require('onedark').setup(config)
+      require('onedark').load()
       set_diagnostics_bg_transparency()
     end
 
