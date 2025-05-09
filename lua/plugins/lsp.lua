@@ -108,15 +108,22 @@ return { -- LSP Configuration & Plugins
     -- Enable the following language servers
     local servers = {
       lua_ls = {
+        -- cmd = {...},
+        -- filetypes { ...},
+        -- capabilities = {},
         settings = {
           Lua = {
             runtime = { version = 'LuaJIT' },
             workspace = {
               checkThirdParty = false,
+              -- Tells lua_ls where to find all the Lua files that you have loaded
+              -- for your neovim configuration.
               library = {
                 '${3rd}/luv/library',
                 unpack(vim.api.nvim_get_runtime_file('', true)),
               },
+              -- If lua_ls is really slow on your computer, you can try this instead:
+              -- library = { vim.env.VIMRUNTIME },
             },
             completion = {
               callSnippet = 'Replace',
@@ -142,7 +149,25 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
-      ruff_lsp = {
+      -- basedpyright = {
+      --   -- Config options: https://github.com/DetachHead/basedpyright/blob/main/docs/settings.md
+      --   settings = {
+      --     basedpyright = {
+      --       disableOrganizeImports = true, -- Using Ruff's import organizer
+      --       disableLanguageServices = false,
+      --       analysis = {
+      --         ignore = { '*' },                 -- Ignore all files for analysis to exclusively use Ruff for linting
+      --         typeCheckingMode = 'off',
+      --         diagnosticMode = 'openFilesOnly', -- Only analyze open files
+      --         useLibraryCodeForTypes = true,
+      --         autoImportCompletions = true,     -- whether pyright offers auto-import completions
+      --       },
+      --     },
+      --   },
+      -- },
+      ruff = {
+        -- Notes on code actions: https://github.com/astral-sh/ruff-lsp/issues/119#issuecomment-1595628355
+        -- Get isort like behavior: https://github.com/astral-sh/ruff/issues/8926#issuecomment-1834048218
         commands = {
           RuffAutofix = {
             function()
@@ -175,6 +200,12 @@ return { -- LSP Configuration & Plugins
       bashls = {},
       dockerls = {},
       docker_compose_language_service = {},
+      -- tailwindcss = {},
+      -- graphql = {},
+      -- html = { filetypes = { 'html', 'twig', 'hbs' } },
+      -- cssls = {},
+      -- ltex = {},
+      -- texlab = {},
     }
 
     -- Ensure the servers and tools above are installed
@@ -188,13 +219,17 @@ return { -- LSP Configuration & Plugins
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-    -- Enable servers using the new vim.lsp.config API
-    for server_name, server_config in pairs(servers) do
-      vim.lsp.config(server_name, {
-        capabilities = capabilities,
-        settings = server_config.settings,
-        commands = server_config.commands,
-      })
-    end
+    require('mason-lspconfig').setup {
+      handlers = {
+        function(server_name)
+          local server = servers[server_name] or {}
+          -- This handles overriding only values explicitly passed
+          -- by the server configuration above. Useful when disabling
+          -- certain features of an LSP (for example, turning off formatting for tsserver)
+          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+          require('lspconfig')[server_name].setup(server)
+        end,
+      },
+    }
   end,
 }

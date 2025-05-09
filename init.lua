@@ -26,11 +26,11 @@ require('lazy').setup({
   require('plugins.indent-blankline'),
   require('plugins.none-ls'),
   require('plugins.autocompletion'),
-  require('plugins.lsp'),
+  -- require('plugins.lsp'),
+  require('plugins.bufferline'),
   
   -- plugins
   -- require('plugins.avante'),
-  -- require('plugins.bufferline'),
   -- require('plugins.chatgpt'),
   -- require('plugins.comment'),
   -- require('plugins.database'),
