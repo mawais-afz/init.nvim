@@ -20,6 +20,7 @@ require('lazy').setup({
   require('plugins.lualine'),
   require('plugins.treesitter'),
   require('plugins.alpha'),
+  require('plugins.telescope'),
   
   -- plugins
   -- require('plugins.alpha'),
