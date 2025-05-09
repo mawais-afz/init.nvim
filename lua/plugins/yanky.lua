@@ -2,7 +2,7 @@ return {
   "gbprod/yanky.nvim",
   recommended = true,
   desc = "Better Yank/Paste",
-  event = "LazyFile",
+  event = "VeryLazy",
   opts = {
     highlight = { timer = 150 },
   },
