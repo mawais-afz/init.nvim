@@ -31,14 +31,15 @@ require('lazy').setup({
   require('plugins.comment'),
   require('plugins.lazygit'),
   require('plugins.gitsigns'),
+  require('plugins.database'),
+  require('plugins.debug'),
+  require('plugins.harpoon'),
+  require('plugins.yanky'),
+  require('plugins.misc'),
   
   -- plugins
   -- require('plugins.avante'),
   -- require('plugins.chatgpt'),
-  -- require('plugins.database'),
-  -- require('plugins.debug'),
-  -- require('plugins.harpoon'),
-  require('plugins.misc'),
-  
   -- require('plugins.vim-tmux-navigator'),
+  
 })
