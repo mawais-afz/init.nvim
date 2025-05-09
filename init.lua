@@ -16,6 +16,7 @@ require('lazy').setup({
   -- themes
   require('plugins.nord'),
   require('plugins.onedark'),
+  require('plugins.colorscheme'),
 
   require('plugins.lualine'),
   require('plugins.treesitter'),
@@ -36,10 +37,31 @@ require('lazy').setup({
   require('plugins.harpoon'),
   -- require('plugins.yanky'),
   require('plugins.misc'),
+  require('plugins.autoformat'),
   
   -- plugins
   -- require('plugins.avante'),
   -- require('plugins.chatgpt'),
   -- require('plugins.vim-tmux-navigator'),
   
+}{
+  ui = {
+    -- If you are using a Nerd Font: set icons to an empty table which will use the
+    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
+    icons = vim.g.have_nerd_font and {} or {
+      cmd = '⌘',
+      config = '🛠',
+      event = '📅',
+      ft = '📂',
+      init = '⚙',
+      keys = '🗝',
+      plugin = '🔌',
+      runtime = '💻',
+      require = '🌙',
+      source = '📄',
+      start = '🚀',
+      task = '📌',
+      lazy = '💤 ',
+    },
+  },
 })
