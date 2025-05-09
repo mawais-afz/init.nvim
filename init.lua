@@ -21,6 +21,7 @@ require('lazy').setup({
   require('plugins.treesitter'),
   require('plugins.alpha'),
   require('plugins.telescope'),
+  require('plugins.neo-tree'),
   
   -- plugins
   -- require('plugins.alpha'),
@@ -39,7 +40,6 @@ require('lazy').setup({
   -- require('plugins.lsp'),
   -- require('plugins.lualine'),
   -- require('plugins.misc'),
-  -- require('plugins.neo-tree'),
   -- require('plugins.none-ls'),
   
   -- require('plugins.telescope'),
