@@ -47,7 +47,7 @@ return {
       },
     }
 
-    local onedark = require 'onedark'
+    local onedark = require 'lua.plugins.onedark'
     onedark.setup(config)
     onedark.load()
 
