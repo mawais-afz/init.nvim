@@ -1,7 +1,6 @@
 return {
   {
     "stevearc/aerial.nvim",
-    event = "LazyFile",
     opts = function()
       -- Define icons for different symbol kinds
       local icons = {
@@ -102,12 +101,44 @@ return {
     "folke/edgy.nvim",
     optional = true,
     opts = function(_, opts)
+      -- Ensure edgy.nvim is loaded before aerial.nvim
+      local function check_plugin_order()
+        local plugins = require("lazy").plugins()
+        local edgy_idx = nil
+        local aerial_idx = nil
+        
+        for i, plugin in ipairs(plugins) do
+          if plugin.name == "folke/edgy.nvim" then
+            edgy_idx = i
+          elseif plugin.name == "stevearc/aerial.nvim" then
+            aerial_idx = i
+          end
+        end
+        
+        if edgy_idx and aerial_idx and edgy_idx > aerial_idx then
+          vim.notify(
+            "The `edgy.nvim` plugin must be loaded before `aerial.nvim` for proper integration.",
+            vim.log.levels.WARN,
+            { title = "Plugin Order Warning" }
+          )
+        end
+      end
+
+      -- Run the check after all plugins are loaded
+      vim.defer_fn(check_plugin_order, 0)
+
+      -- Configure edgy.nvim integration
       opts.right = opts.right or {}
       table.insert(opts.right, {
-        title = "Overseer",
-        ft = "OverseerList",
-        open = function()
-          require("overseer").open()
+        title = "Aerial",
+        ft = "aerial",
+        pinned = true,
+        open = "AerialOpen",
+        size = 40, -- Set a fixed width for the aerial window
+        filter = function(win)
+          -- Only show aerial window for supported filetypes
+          local ft = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype")
+          return vim.tbl_contains({ "lua", "python", "javascript", "typescript", "rust", "go" }, ft)
         end,
       })
     end,

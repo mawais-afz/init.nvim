@@ -24,8 +24,8 @@ require('lazy').setup({
   require('plugins.telescope'),
   require('plugins.neo-tree'),
   require('plugins.indent-blankline'),
-  require('plugins.lsp'),
   require('plugins.none-ls'),
+  -- require('plugins.lsp'),
   
   -- plugins
   -- require('plugins.autocompletion'),
