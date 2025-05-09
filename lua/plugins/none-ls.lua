@@ -14,9 +14,15 @@ return {
         'stylua',
         'eslint_d',
         'shfmt',
-        'ruff',
+        'ruff-lsp',
       },
       automatic_installation = true,
+      handlers = {
+        -- Add specific handler for ruff
+        ruff = function()
+          require('mason-null-ls').default_setup('ruff')
+        end,
+      },
     }
 
     -- Then initialize null-ls
@@ -30,8 +36,9 @@ return {
       formatting.stylua,
       formatting.shfmt.with { args = { '-i', '4' } },
       formatting.terraform_fmt,
-      require('none-ls.formatting.ruff').with { extra_args = { '--extend-select', 'I' } },
-      require 'none-ls.formatting.ruff_format',
+      -- Simplified ruff configuration
+      diagnostics.ruff,
+      formatting.ruff_format,
     }
 
     null_ls.setup {
