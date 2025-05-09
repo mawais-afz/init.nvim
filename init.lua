@@ -25,10 +25,10 @@ require('lazy').setup({
   require('plugins.neo-tree'),
   require('plugins.indent-blankline'),
   require('plugins.none-ls'),
+  require('plugins.autocompletion'),
   -- require('plugins.lsp'),
   
   -- plugins
-  -- require('plugins.autocompletion'),
   -- require('plugins.avante'),
   -- require('plugins.bufferline'),
   -- require('plugins.chatgpt'),

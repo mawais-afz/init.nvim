@@ -117,12 +117,12 @@ return { -- Autocompletion
           end
         end, { 'i', 's' }),
       },
-      sources = {
+      sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
-      },
+      }),
       formatting = {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
