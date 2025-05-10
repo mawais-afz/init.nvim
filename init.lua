@@ -35,7 +35,6 @@ require('lazy').setup({
   require('plugins.database'),
   require('plugins.debug'),
   require('plugins.harpoon'),
-  -- require('plugins.yanky'),
   require('plugins.misc'),
   require('plugins.autoformat'),
 
