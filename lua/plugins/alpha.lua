@@ -73,13 +73,20 @@ return {
       }
 
       -- Layout
+      -- Adjust layout to fit screen without scrolling
       dashboard.config.layout = {
-        { type = "padding", val = 2 },
+        { type = "padding", val = 1 },
         dashboard.section.header,
-        { type = "padding", val = 2 },
+        { type = "padding", val = 1 },
         dashboard.section.buttons,
-        { type = "padding", val = 2 },
+        { type = "padding", val = 1 },
         dashboard.section.footer,
+      }
+      
+      -- Set options to prevent scrolling
+      dashboard.config.opts = {
+        margin = 5,
+        noautocmd = true,
       }
 
       -- Setup
