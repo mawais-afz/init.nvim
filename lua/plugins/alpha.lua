@@ -62,12 +62,6 @@ return {
         dashboard.button("s", "💾 " .. " Sessions", "<cmd> Telescope session-lens search_session <cr>"),
         dashboard.button("p", "📦 " .. " Plugins", "<cmd> Telescope find_files cwd=~/.config/nvim/lua/plugins <cr>"),
         dashboard.button("t", "🎨 " .. " Theme", "<cmd> Telescope colorscheme <cr>"),
-        dashboard.button("x", "  " .. " Lazy Extras", function()
-          vim.api.nvim_create_user_command("LazyExtras", function()
-            LazyVim.extras.show()
-          end, { desc = "Manage LazyVim extras" })
-          vim.cmd("LazyExtras")
-        end),
         dashboard.button("l", "󰒲  " .. " Lazy", "<cmd> Lazy <cr>"),
         dashboard.button("q", "❌ " .. " Quit", "<cmd> qa <cr>"),
       }
