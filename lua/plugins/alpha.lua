@@ -43,9 +43,9 @@ return {
       -- Header
       local logo = [[
            ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
-           ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z    
-           ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z       
-           ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z         
+           ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z
+           ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z
+           ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z
            ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
            ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
       ]]
@@ -54,15 +54,17 @@ return {
 
       -- Buttons
       dashboard.section.buttons.val = {
-        dashboard.button("f", "🔍 " .. " Find file",       "<cmd> Telescope find_files <cr>"),
-        dashboard.button("n", "📄 " .. " New file",        [[<cmd> ene <BAR> startinsert <cr>]]),
-        dashboard.button("r", "🕒 " .. " Recent files",    "<cmd> Telescope oldfiles <cr>"),
-        dashboard.button("g", "🔎 " .. " Find text",       "<cmd> Telescope live_grep <cr>"),
-        dashboard.button("c", "⚙️ " .. " Config",          "<cmd> e $MYVIMRC <cr>"),
-        dashboard.button("s", "💾 " .. " Sessions",        "<cmd> Telescope session-lens search_session <cr>"),
-        dashboard.button("p", "📦 " .. " Plugins",         "<cmd> Telescope find_files cwd=~/.config/nvim/lua/plugins <cr>"),
-        dashboard.button("t", "🎨 " .. " Theme",           "<cmd> Telescope colorscheme <cr>"),
-        dashboard.button("q", "❌ " .. " Quit",            "<cmd> qa <cr>"),
+        dashboard.button("f", "🔍 " .. " Find file", "<cmd> Telescope find_files <cr>"),
+        dashboard.button("n", "📄 " .. " New file", [[<cmd> ene <BAR> startinsert <cr>]]),
+        dashboard.button("r", "🕒 " .. " Recent files", "<cmd> Telescope oldfiles <cr>"),
+        dashboard.button("g", "🔎 " .. " Find text", "<cmd> Telescope live_grep <cr>"),
+        dashboard.button("c", "⚙️ " .. " Config", "<cmd> e $MYVIMRC <cr>"),
+        dashboard.button("s", "💾 " .. " Sessions", "<cmd> Telescope session-lens search_session <cr>"),
+        dashboard.button("p", "📦 " .. " Plugins", "<cmd> Telescope find_files cwd=~/.config/nvim/lua/plugins <cr>"),
+        dashboard.button("t", "🎨 " .. " Theme", "<cmd> Telescope colorscheme <cr>"),
+        dashboard.button("x", "  " .. " Lazy Extras", "<cmd> LazyExtras <cr>"),
+        dashboard.button("l", "󰒲  " .. " Lazy", "<cmd> Lazy <cr>"),
+        dashboard.button("q", "❌ " .. " Quit", "<cmd> qa <cr>"),
       }
 
       -- Footer
